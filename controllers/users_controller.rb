@@ -8,8 +8,8 @@ class UsersController < ApplicationController
   get '/create' do
     password = BCrypt::Password.create('test')
     # @new_user = Users.create username: params[:username], email: params[:email], password: password
-    @new_user = User.create username: 'testjosh', email: 'test@joshenglish.com', password: password
-    "You have registered {@new_user.username}"
+    @new_user = User.create username: 'dantest', email: 'test@dan.com', password: password
+    "You have registered #{@new_user.username}"
   end
 
   get '/whois' do
