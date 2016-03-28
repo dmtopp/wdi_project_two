@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
 
   # Default Route for ApplicationController
   get '/' do
-    "Sinatra is running.  Let's make poop"
+    erb :index
   end
 
 end

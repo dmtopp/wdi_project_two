@@ -7,8 +7,7 @@ class UsersController < ApplicationController
   # Form Names from Params: username, email, password
   get '/create' do
     password = BCrypt::Password.create('test')
-    # @new_user = Users.create username: params[:username], email: params[:email], password: password
-    @new_user = User.create username: 'dantest', email: 'test@dan.com', password: password
+    @new_user = Users.create username: params[:username], email: params[:email], password: password
     "You have registered #{@new_user.username}"
   end
 
