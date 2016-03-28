@@ -4,6 +4,8 @@ class ApplicationController < Sinatra::Base
   set :views, File.expand_path('../../views', __FILE__)
   set :public_dir, File.expand_path('../../public', __FILE__)
 
+  enable :sessions
+
   # Default Route for ApplicationController
   get '/' do
     "Sinatra is running.  Let's make poop"
