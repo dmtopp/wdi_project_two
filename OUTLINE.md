@@ -51,8 +51,8 @@ Reviews
 |---|---|---|
 |location_id   |FK (locations_id)   |Int   |
 |rating   | x  | integer |
-|review_text   | x  | text  |
-|who_posted   | x  | text  |
+|review_text   | x  | Tgitext  |
+|who_posted   | x  | String  |
 
 #### Wireframes
 
