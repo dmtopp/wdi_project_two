@@ -1,3 +1,4 @@
+// create our map
 var map = new GMaps({
   zoom: 18,
   div: '#map',
@@ -5,6 +6,9 @@ var map = new GMaps({
   lng: -87.626850
 });
 
+
+// grabs the user's location and sends the coordinates to the
+// sendLocation function
 $('#geolocate').click(function(){
   map.removeMarkers();
   GMaps.geolocate({
@@ -37,6 +41,8 @@ $('#geolocate').click(function(){
 
 })
 
+// takes an address entered by the user and sends their coordinates to the
+// sendLocation function
 $('#address_search').click(function(e){
   map.removeMarkers();
   GMaps.geocode({
@@ -63,6 +69,10 @@ $('#address_search').click(function(e){
 })
 
 
+// sends the user's location to the server
+// the server will send back a list of nearby locations
+// this function then calls the functions to add these loctions to the map
+// and to the list on the side of the page
 function sendLocation(lat,lng){
   $.ajax({
     method: 'post',
@@ -89,7 +99,7 @@ function sendLocation(lat,lng){
 
 
 
-
+// accepts a 'place' object and places a marker on the map
 function placeMarker(place){
   var self = place;
   self.avgRating = 5;
@@ -108,15 +118,21 @@ function placeMarker(place){
   })
 }
 
+// adds a 'place' object to the list on the right side of the page.
 function addToList(place){
   // placeMarker(place);
+
   $('#list-results').append('<div class="results-item">' +
                             '<li>' + place.place_name + ' ' + place.avgRating +'/5</li>' +
                             '<li><small><a value="' + place.place_id + '" class="add-review" href="#">Write a review for this location</a></small></li>' +
                             '</div>');
+  // the 'add-review' class is added to all review links
   $('.add-review').click(function(e){
+    // Grab the place id from the value of the link
+    // The place id was stored in the value attribute of the link when the link was created
     var place_id = $(this).attr('value');
     e.preventDefault();
+    // add the review form to the page with the correct place id
     $('#rate-location').html('<div class="review-wrapper">' +
                               '  <section id="write-review">' +
                               '    <h3>Select how many stars out of 5!</h3>' +
@@ -128,7 +144,7 @@ function addToList(place){
                               '        <option>4</option>' +
                               '        <option>5</option>' +
                               '      </select>' +
-                              '      <input type="hidden" name="place_id" value="' + place_id + '">' +
+                              '      <input type="hidden" name="place_id" value="' + place_id + '">' + //hidden field keeps track of place id
                               '      <button type="submit">GO!</button>' +
                               '    </form>' +
                               '  </section>' +
