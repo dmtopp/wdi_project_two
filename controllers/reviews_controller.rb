@@ -20,10 +20,11 @@ class ReviewsController < ApplicationController
   end
 
 
-  get '/postreview' do
-    if session[:logged_in] === true
-      erb :reviewform
-    end
+  post '/postreview' do
+    puts params
+    # if session[:logged_in] === true
+    #   erb :reviewform
+    # end
   end
 
 

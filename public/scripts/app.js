@@ -75,8 +75,8 @@ function sendLocation(lat,lng){
       $('#list-results').html('');
       var array_of_places = JSON.parse(data);
       array_of_places.forEach(function(place){
-        placeMarker(place);
         if (array_of_places.indexOf(place) < 5) addToList(place);
+        placeMarker(place);
       })
     },
     failure: function(err){
@@ -86,26 +86,52 @@ function sendLocation(lat,lng){
 }
 
 
+
+
+
+
 function placeMarker(place){
   var self = place;
   self.avgRating = 5;
   self.numReviews = 10;
   map.addMarker({
+    place_id: self.place_id,
     lat: self.lat,
     lng: self.lng,
     title: self.place_name,
     infoWindow: {
       content:  '<h4>' + self.place_name + '</h4>' +
                 '<p>Average Rating: ' + self.avgRating + '/5</p>' +
-                '<small>' + self.numReviews + ' people reviewed this location</small>' +
-                '<p><a href="#">Add a review</a></p>'
+                '<small>' + self.numReviews + ' people reviewed this location</small>' //+
+                // '<p><a value="'+ self.place_id + '" class="add-review" href="#">Add a review</a></p>'
     }
   })
 }
 
 function addToList(place){
+  // placeMarker(place);
   $('#list-results').append('<div class="results-item">' +
                             '<li>' + place.place_name + ' ' + place.avgRating +'/5</li>' +
-                            '<li><small><a href="#">Write a review for this location</a></small></li>' +
+                            '<li><small><a value="' + place.place_id + '" class="add-review" href="#">Write a review for this location</a></small></li>' +
                             '</div>');
+  $('.add-review').click(function(e){
+    var place_id = $(this).attr('value');
+    e.preventDefault();
+    $('#rate-location').html('<div class="review-wrapper">' +
+                              '  <section id="write-review">' +
+                              '    <h3>Select how many stars out of 5!</h3>' +
+                              '    <form class="" action="/reviews/postreview" method="post">' +
+                              '      <select name="stars" class="form-control">' +
+                              '        <option>1</option>' +
+                              '        <option>2</option>' +
+                              '        <option>3</option>' +
+                              '        <option>4</option>' +
+                              '        <option>5</option>' +
+                              '      </select>' +
+                              '      <input type="hidden" name="place_id" value="' + place_id + '">' +
+                              '      <button type="submit">GO!</button>' +
+                              '    </form>' +
+                              '  </section>' +
+                              '</div>');
+  });
 }
