@@ -7,6 +7,7 @@ DB = Sequel.sqlite('development.sqlite')
 # Adding Models
 require './models/user'
 require './models/review'
+require './models/location'
 
 # Adding Controllers
 require './controllers/application_controller'
