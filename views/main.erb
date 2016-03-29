@@ -1,8 +1,16 @@
-<form class="" action="#" method="post">
-  <label for="address">Search by Address</label>
-  <input type="text" name="address" placeholder="Enter an address">
-  <button type="button" id="geolocate" name="geolocate">Use my location</button>
-  <button type="submit" name="button"></button>
+<div class="row options">
+  <div class="col-xs-12 col-md-8">
+    <div class="img-responsive" id="map"></div>
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <button class="btn btn-danger form-control" type="button" id="geolocate" name="geolocate">Use my location</button>
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input id="address" type="text" class="form-control" placeholder="Search">
+      </div>
+      <button id="address_search" type="button" class="btn btn-default form-control">Search by Address</button>
+    </form>
 
-</form>
-<div id="map"></div>
+  </div>
+
+</div>
