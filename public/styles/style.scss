@@ -1,0 +1,71 @@
+$map-width: 500px;
+$map-height: 500px;
+
+#map{
+  margin: auto;
+  height: $map-height;
+}
+
+#geolocate{
+  margin: 8px 0;
+}
+
+@media only screen
+  and (min-device-width: 250px)
+  and (max-device-width: 736px) {
+
+
+
+  #geolocate{
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .navbar{
+  height: 15%;
+  padding: 0;
+  margin: 0;
+  };
+
+  #map{
+    height: 70%;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .options{
+    height: 15%;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .btn{
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+
+  .navbar-form{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-top: none;
+  }
+
+  .form-group{
+    margin-bottom: 0;
+  }
+
+  .form-control{
+    border-radius: 0;
+  }
+
+  .navbar-form .form-group{
+    margin-bottom: 0;
+  }
+
+
+}

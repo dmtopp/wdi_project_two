@@ -10,7 +10,7 @@ class ApplicationController < Sinatra::Base
 
   # Default Route for ApplicationController
   get '/' do
-    erb :index
+    erb :main
   end
 
 end
