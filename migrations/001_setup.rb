@@ -14,10 +14,14 @@ Sequel.migration do
     # end
     create_table(:reviews) do
       primary_key :review_id
-      String :business_id
+      foreign_key :location_id, :locations, :null=>false
       Integer :rating, :null=>false
-      String :reivew_text, :text=>true, :null=>false
       String :who_posted, :null=>false
+    end
+    create_table(:locations) do
+      primary_key :location_id
+      String :places_id, :null=>false
+      Integer :avg_rating
     end
   end
 end
