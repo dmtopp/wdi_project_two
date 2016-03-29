@@ -29,8 +29,8 @@ $('#geolocate').click(function(){
           "lat": lat,
           "lng": lng
         },
-        success: function(){
-          console.log('we did it!');
+        success: function(data){
+          console.log(data);
         },
         failure: function(err){
           console.log(err);
@@ -88,8 +88,8 @@ $('#address_search').click(function(e){
             "lat": lat,
             "lng": lng
           },
-          success: function(){
-            console.log('we did it!');
+          success: function(data){
+            console.log(data);
           },
           failure: function(err){
             console.log(err);
