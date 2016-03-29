@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
   get '/' do
-    "UsersController has loaded successfully"
+    erb :login
   end
 
   # Registration Page
   # Form Names from Params: username, email, password
-  get '/create' do
-    password = BCrypt::Password.create('test')
-    @new_user = Users.create username: params[:username], email: params[:email], password: password
+  post '/register' do
+    password = BCrypt::Password.create(params[:password])
+    @new_user = User.create username: params[:username], email: params[:email], password: password
     "You have registered #{@new_user.username}"
   end
 
@@ -21,11 +21,13 @@ class UsersController < ApplicationController
   post '/login' do
     user = User[username: params[:username]]
     stored_password = BCrypt::Password.new(user.password)
-    if user && compare_to == params[:password]
+    if user && stored_password == params[:password]
       session[:logged_in] = true
       session[:current_user_id] = user[:user_id]
+      pry()
       "Welcome back #{user.username}"
     else
+      pry()
       "You have entered the wrong email & password combination"
     end
   end
