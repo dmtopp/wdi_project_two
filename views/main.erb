@@ -4,13 +4,12 @@
   </div>
   <div class="col-xs-12 col-md-4">
     <button class="btn btn-danger form-control" type="button" id="geolocate" name="geolocate">Use my location</button>
-    <form class="navbar-form navbar-left" role="search">
+    <form id="location" action="/reviews" method="post" class="navbar-form navbar-left" role="search">
       <div class="form-group">
-        <input id="address" type="text" class="form-control" placeholder="Search">
+        <input id="address" type="submit" class="form-control" placeholder="Search">
       </div>
       <button id="address_search" type="button" class="btn btn-default form-control">Search by Address</button>
     </form>
-
   </div>
 
 </div>
