@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
   set :public_dir, File.expand_path('../../public', __FILE__)
 
   enable :sessions
-
+  @message = ''
   # Default Route for ApplicationController
   get '/' do
     erb :main
