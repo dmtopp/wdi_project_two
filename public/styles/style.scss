@@ -10,6 +10,27 @@ $map-height: 500px;
   margin: 8px 0;
 }
 
+.results-item li{
+  list-style-type: none;
+}
+
+.results-item {
+  border: 2px solid rgba(0,0,0,0.4);
+}
+
+.review-wrapper{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+#write-review{
+  // display: none;
+  position: relative;
+  left: -50%;
+  top: -50%;
+}
+
 @media only screen
   and (min-device-width: 250px)
   and (max-device-width: 736px) {

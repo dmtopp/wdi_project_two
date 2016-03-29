@@ -25,18 +25,12 @@ class ReviewsController < ApplicationController
     @all_locations.to_json
   end
 
-  get '/postreview' do
-    if session[:logged_in] === true
 
-    end
+  post '/postreview' do
+    puts params
+    # if session[:logged_in] === true
+    #   erb :reviewform
+    # end
   end
-
-
-
-
-
-
-
-
 
 end
