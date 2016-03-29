@@ -1,0 +1,8 @@
+<h1>List of <%= location_info.length %> Closest Locations to the Address</h1>
+<ul>
+  <% location_info.each do |item| %>
+    <li>
+      <%= item.name %>
+    </li>
+  <% end %>
+</ul>
