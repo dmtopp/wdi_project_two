@@ -1,2 +1,2 @@
 .env
-development.sqlite
+*.sqlite
