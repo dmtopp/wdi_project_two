@@ -23,7 +23,7 @@ $('#geolocate').click(function(){
         lng: lng,
         label: 'You! (ish)',
         infoWindow: {
-          content: '<h4>Your position!</h4>'
+          content: '<p>Your position!</p>'
         }
       })
       sendLocation(lat,lng);
@@ -82,7 +82,7 @@ function sendLocation(lat,lng){
       "lng": lng
     },
     success: function(data){
-      console.log(data);
+      // console.log(data);
       $('#list-results').html('');
       var array_of_places = JSON.parse(data);
       array_of_places.forEach(function(place){
@@ -102,11 +102,11 @@ function placeMarker(place){
   var content;
   // if there are no entries in the database for a location its avg_rating property will be -1
   if (self.avg_rating >= 0 && self.the_count > 0){
-    content = '<h4>' + self.place_name + '</h4>' +
+    content = '<p><b>' + self.place_name + '</b><p>' +
                   '<p>Average Rating: ' + self.avg_rating.toString() + '/5</p>' +
                   '<small>' + self.the_count + ' people reviewed this location</small>';
   }else {
-    content = '<h4>' + self.place_name + '</h4>' +
+    content = '<p><b>' + self.place_name + '</b></p>' +
               '<small>No reviews yet!</small>';
   }
 
@@ -126,12 +126,12 @@ function addToList(place){
   var displayRating;
   // if there are no entries in the database for a location its avg_rating property will be -1
   if (place.avg_rating >= 0 && place.the_count > 0){
-    var displayRating = '<li>' + place.place_name + ' ' + place.avg_rating +'/5</li>' +
-                        '<small>' + place.the_count + ' people reviewed this location</small>' +
-                        '<li><small><a value="' + place.place_id + '" class="add-review" href="#">Write a review for this location</a></small></li>';
+    var displayRating = '<p><b>' + place.place_name + ' ' + place.avg_rating +'/5</b></p>' +
+                        '<p><small>' + place.the_count + ' people reviewed this location</small></p>' +
+                        '<p><small><a value="' + place.place_id + '" class="add-review" href="#">Write a review for this location</a></small></p>';
   } else {
-    var displayRating = '<li>' + place.place_name + '</li>' +
-                        '<li><small><a value="' + place.place_id + '" class="add-review" href="#">Be the first to review this location!</a></small></li>';
+    var displayRating = '<p><b>' + place.place_name + '</b></p>' +
+                        '<p><small><a value="' + place.place_id + '" class="add-review" href="#">Be the first to review this location!</a></small></p>';
   }
 
   $('#list-results').append('<div class="results-item">' + displayRating + '</div>');
