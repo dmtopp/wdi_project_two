@@ -35,13 +35,16 @@ class UsersController < ApplicationController
       post_review(session[:stars], session[:place_id])
       session.delete(:stars)
       session.delete(:place_id)
-      redirect '../'
+      @message = "Thanks for creating your account!  Your review has been posted."
+      erb :main
     # Normal Registration
     elsif !session[:logged_in] && !session[:stars] && !session[:place_id]
       register_user
-      redirect '../'
+      @message = "Thanks for creating your account!"
+      erb :main
     else
-      "Complete and utter failure in the codes"
+      @message = "You are already logged in."
+      erb :main
     end
   end
 
@@ -54,13 +57,16 @@ class UsersController < ApplicationController
       post_review(session[:stars], session[:place_id])
       session.delete(:stars)
       session.delete(:place_id)
-      redirect '../'
+      @message = "You are now logged in and your review has been posted."
+      erb :main
     # Normal login
     elsif !session[:logged_in] && !session[:stars] && !session[:place_id]
       login_user
-      redirect '../'
+      @message = "You are now logged in."
+      erb :main
     else
-      "You have failed miserably coders"
+      @message = "You are already logged in."
+      erb :main
     end
   end
 
@@ -71,6 +77,7 @@ class UsersController < ApplicationController
     session.delete(:current_users_id)
     session.delete(:stars)
     session.delete(:place_id)
-    "You are now logged out"
+    @message = "You have been logged out"
+    erb :main
   end
 end
