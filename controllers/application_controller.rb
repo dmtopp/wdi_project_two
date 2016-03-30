@@ -19,7 +19,6 @@ class ApplicationController < Sinatra::Base
       @get_location_id = Location.where(:places_id=>place).get(:location_id)
     end
     Review.create  location_id: @get_location_id, rating: star, who_posted: @get_username
-    pry()
   end
 
 

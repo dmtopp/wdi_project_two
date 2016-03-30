@@ -41,7 +41,6 @@ class UsersController < ApplicationController
       register_user
       redirect '../'
     else
-      pry()
       "Complete and utter failure in the codes"
     end
   end
@@ -61,7 +60,6 @@ class UsersController < ApplicationController
       login_user
       redirect '../'
     else
-      pry()
       "You have failed miserably coders"
     end
   end
