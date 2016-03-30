@@ -8,7 +8,8 @@ class UsersController < ApplicationController
   post '/register' do
     password = BCrypt::Password.create(params[:password])
     @new_user = User.create username: params[:username], email: params[:email], password: password
-    "You have registered #{@new_user.username}"
+    session[:logged_in] = true
+    session[:current_user_id] = @new_user[:user_id]
   end
 
   get '/whois' do
@@ -25,7 +26,6 @@ class UsersController < ApplicationController
       session[:logged_in] = true
       session[:current_user_id] = user[:user_id]
       "Welcome back #{user.username}"
-      sleep(5)
       redirect '../'
     else
       "You have entered the wrong email & password combination"
@@ -34,7 +34,8 @@ class UsersController < ApplicationController
 
   # Logout Page
   get '/logout' do
-    session[:logged_in] = false
+    session.delete[:logged_in]
+    session.delete[:current_users_id]
     "You are now logged out"
   end
 end
