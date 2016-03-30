@@ -9,6 +9,8 @@ class ApplicationController < Sinatra::Base
   enable :sessions
   @message = ''
 
+  # Method that is called in multiple places based on if users is logged in.
+  # Allows user to post review from login/registration page if not logged in and trying to post review.
   def post_review(star, place)
     @get_username = User.where(:user_id=>session[:current_user_id]).get(:username)
     @get_location_id = Location.where(:places_id=>place).get(:location_id)
