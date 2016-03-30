@@ -1,3 +1,13 @@
+html, body {
+  font-family: 'Vollkorn', serif; }
+
+nav h3 {
+  display: inline-block; }
+nav ul {
+  display: inline-block; }
+nav li {
+  display: inline-block; }
+
 #map {
   margin: auto;
   height: 500px; }
@@ -5,29 +15,27 @@
 #geolocate {
   margin: 8px 0; }
 
-.results-item li {
+li {
   list-style-type: none; }
 
 .results-item {
-  border: 2px solid rgba(0, 0, 0, 0.4);
-  margin-top: 3px; }
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  margin-top: 3px;
+  border-radius: 4px; }
 
-#location {
-  width: 100%;
-  padding: 0; }
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl; }
 
-.form-group {
-  width: 100%; }
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+  font-size: 2em; }
 
-#address {
-  width: 100%;
-  display: block; }
-
-#address-search {
-  width: 100%;
-  display: block; }
-
-.navbar-form {
-  margin: 0; }
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+  content: "\2605";
+  position: absolute; }
 
 /*# sourceMappingURL=style.css.map */
