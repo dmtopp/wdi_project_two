@@ -9,15 +9,20 @@ class ReviewsController < ApplicationController
     @all_locations = []
     location_info.each do |item|
       # SQL statement getting Average Rating based on the Place_ID from Google Places
-      @average_rating = Location.where(:places_id=>item.place_id).get(:avg_rating) || -1
+      @sum_rating = Review.where(:location_id=>(Location.where(:places_id=>item.place_id).get(:location_id))).get{sum(rating)}
       # SQL statement getting the count by inner joining reviews table with locations table.
       @the_count =  DB["select count(*) as 'count_rating' from reviews r inner join locations l ON r.location_id = l.location_id where l.places_id = '#{item.place_id}'"].all || 0
+      if @the_count[0][:count_rating] > 0
+        @average_rating = (@sum_rating.to_f / @the_count[0][:count_rating])
+      else
+        @average_rating = -1
+      end
       location = {
         "place_name": item.name,
         "lat":        item.lat.to_s,
         "lng":        item.lng.to_s,
         "place_id":   item.place_id,
-        "avg_rating": @average_rating,
+        "avg_rating": @average_rating.round(2),
         "the_count":  @the_count[0][:count_rating]
       }
       @all_locations.push(location)
@@ -28,14 +33,14 @@ class ReviewsController < ApplicationController
 
   post '/postreview' do
     if session[:logged_in] === true
-      @get_username = User.where(:user_id=>session[:current_user_id]).get(:username)
-      @get_location_id = Location.where(:places_id=>params[:place_id]).get(:location_id)
-      Review.create  location_id: @get_location_id, rating: params[:stars], who_posted: @get_username
-      "Thank you for rating #{@get_username}!"
-    else
-      "You are not logged in.  Please login"
+      post_review(params[:stars], params[:place_id])
+      "Thank you for posting"
+    else # If user is not logged in store the AJAX call from Frontend in Session to be called later.  Redirect back to erb
+      session[:stars] = params[:stars]
+      session[:place_id] = params[:place_id]
       erb :login
     end
+
   end
 
 end
