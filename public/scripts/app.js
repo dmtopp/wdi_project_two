@@ -27,6 +27,7 @@ $('#geolocate').click(function(){
         }
       })
       sendLocation(lat,lng);
+    },
     error: function(error) {
       console.log('Geolocation failed: '+error.message);
     },

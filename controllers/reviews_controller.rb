@@ -27,10 +27,15 @@ class ReviewsController < ApplicationController
 
 
   post '/postreview' do
-    puts params
-    # if session[:logged_in] === true
-    #   erb :reviewform
-    # end
+    if session[:logged_in] === true
+      @get_username = User.where(:user_id=>session[:current_user_id]).get(:username)
+      @get_location_id = Location.where(:places_id=>params[:place_id]).get(:location_id)
+      Review.create  location_id: @get_location_id, rating: params[:stars], who_posted: @get_username
+      "Thank you for rating #{@get_username}!"
+    else
+      "You are not logged in.  Please login"
+      erb :login
+    end
   end
 
 end
