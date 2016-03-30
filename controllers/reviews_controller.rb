@@ -28,19 +28,14 @@ class ReviewsController < ApplicationController
 
   post '/postreview' do
     if session[:logged_in] === true
-      @get_username = User.where(:user_id=>session[:current_user_id]).get(:username)
-      @get_location_id = Location.where(:places_id=>params[:place_id]).get(:location_id)
-      if !@get_location_id
-        Location.create places_id: params[:place_id]
-        @get_location_id = Location.where(:places_id=>params[:place_id]).get(:location_id)
-      end
-      Review.create  location_id: @get_location_id, rating: params[:stars], who_posted: @get_username
-      "Thank you for rating #{@get_username}!"
+      post_review(params[:stars], params[:place_id])
+      "Thank you for posting"
     else # If user is not logged in store the AJAX call from Frontend in Session to be called later.  Redirect back to erb
       session[:stars] = params[:stars]
       session[:place_id] = params[:place_id]
       erb :login
     end
+
   end
 
 end
