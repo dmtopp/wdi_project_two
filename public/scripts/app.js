@@ -85,9 +85,6 @@ function sendLocation(lat,lng){
       $('#list-results').html('');
       var array_of_places = JSON.parse(data);
       array_of_places.forEach(function(place){
-        // this.avgRating = 5;
-        // this.numReviews = 10;
-        // if (array_of_places.indexOf(place) < 5)
         addToList(place);
         placeMarker(place);
       })
@@ -165,10 +162,13 @@ function addToList(place){
   });
 }
 
-var logID = 'log',
-  log = $('<div id="'+logID+'"></div>');
-$('body').append(log);
-  $('[type*="radio"]').change(function () {
-    var me = $(this);
-    log.html(me.attr('value'));
-  });
+// $('.rating span').click(function(){
+//   if ($(this).html != "&#x2605"){
+//
+//     console.log($(this).html);
+//     $(this).html("&#x2605");
+//   } else{
+//     $(this).html("&#x2606")
+//   }
+
+// });
