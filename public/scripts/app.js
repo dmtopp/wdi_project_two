@@ -144,21 +144,23 @@ function addToList(place){
     var place_id = $(this).attr('value');
     e.preventDefault();
     // add the review form to the page with the correct place id
-    $('#rate-location').html('<div class="review-wrapper">' +
-                              '  <section id="write-review">' +
-                              '    <h3>Rating from 1-5:</h3>' +
-                              '    <form class="" action="/reviews/postreview" method="post">' +
-                              '      <select name="stars" class="form-control">' +
-                              '        <option>1</option>' +
-                              '        <option>2</option>' +
-                              '        <option>3</option>' +
-                              '        <option>4</option>' +
-                              '        <option>5</option>' +
-                              '      </select>' +
-                              '      <input type="hidden" name="place_id" value="' + place_id + '">' + //hidden field keeps track of place id
-                              '      <button type="submit">GO!</button>' +
-                              '    </form>' +
-                              '  </section>' +
-                              '</div>');
+    $('#write-review').removeClass('hidden');
+    $('#place-id').val(place_id);
+    // $('#rate-location').html('<div class="review-wrapper">' +
+    //                           '  <section id="write-review">' +
+    //                           '    <h3>Rating from 1-5:</h3>' +
+    //                           '    <form class="" action="/reviews/postreview" method="post">' +
+    //                           '      <select name="stars" class="form-control">' +
+    //                           '        <option>1</option>' +
+    //                           '        <option>2</option>' +
+    //                           '        <option>3</option>' +
+    //                           '        <option>4</option>' +
+    //                           '        <option>5</option>' +
+    //                           '      </select>' +
+    //                           '      <input type="hidden" name="place_id" value="' + place_id + '">' + //hidden field keeps track of place id
+    //                           '      <button type="submit">GO!</button>' +
+    //                           '    </form>' +
+    //                           '  </section>' +
+    //                           '</div>');
   });
 }
