@@ -8,12 +8,30 @@
       <div class="form-group">
         <input id="address" type="text" class="form-control" placeholder="Search">
       </div>
-      <button id="address_search" type="button" class="btn btn-default form-control">Search by Address</button>
+      <button id="address_search" type="button" class="btn btn-default">Search by Address</button>
     </form>
     <ul id="list-results">
 
     </ul>
-    <div id="rate-location"></div>
+    <!-- <div id="rate-location">
+      <div class="review-wrapper"> -->
+        <section class="hidden" id="write-review">
+          <h3>Rating from 1-5:</h3>
+            <form class="" action="/reviews/postreview" method="post">
+              <select name="stars" class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+              <input type="hidden" name="place_id" value="' + place_id + '">
+              <button type="submit">GO!</button>
+            </form>
+          </section>
+
+        <!-- </div>
+    </div> -->
   </div>
 
 

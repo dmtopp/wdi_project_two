@@ -9,49 +9,25 @@
   list-style-type: none; }
 
 .results-item {
-  border: 2px solid rgba(0, 0, 0, 0.4); }
+  border: 2px solid rgba(0, 0, 0, 0.4);
+  margin-top: 3px; }
 
-@media only screen and (min-device-width: 250px) and (max-device-width: 736px) {
-  #geolocate {
-    margin-top: 0;
-    margin-bottom: 0; }
+#location {
+  width: 100%;
+  padding: 0; }
 
-  .navbar {
-    height: 15%;
-    padding: 0;
-    margin: 0; }
+.form-group {
+  width: 100%; }
 
-  #map {
-    height: 70%;
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 0; }
+#address {
+  width: 100%;
+  display: block; }
 
-  .options {
-    height: 15%;
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 0; }
+#address-search {
+  width: 100%;
+  display: block; }
 
-  .btn {
-    margin-top: 0;
-    margin-bottom: 0;
-    border-radius: 0; }
-
-  .navbar-form {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    border-top: none; }
-
-  .form-group {
-    margin-bottom: 0; }
-
-  .form-control {
-    border-radius: 0; }
-
-  .navbar-form .form-group {
-    margin-bottom: 0; } }
+.navbar-form {
+  margin: 0; }
 
 /*# sourceMappingURL=style.css.map */

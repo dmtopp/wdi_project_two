@@ -27,6 +27,7 @@ $('#geolocate').click(function(){
         }
       })
       sendLocation(lat,lng);
+    },
     error: function(error) {
       console.log('Geolocation failed: '+error.message);
     },
@@ -84,7 +85,10 @@ function sendLocation(lat,lng){
       $('#list-results').html('');
       var array_of_places = JSON.parse(data);
       array_of_places.forEach(function(place){
-        if (array_of_places.indexOf(place) < 5) addToList(place);
+        // this.avgRating = 5;
+        // this.numReviews = 10;
+        // if (array_of_places.indexOf(place) < 5)
+        addToList(place);
         placeMarker(place);
       })
     },
@@ -94,37 +98,45 @@ function sendLocation(lat,lng){
   });
 }
 
-
-
-
-
 // accepts a 'place' object and places a marker on the map
 function placeMarker(place){
   var self = place;
-  self.avgRating = 5;
-  self.numReviews = 10;
+  var content;
+  // if there are no entries in the database for a location its avg_rating property will be -1
+  if (self.avg_rating >= 0 && self.the_count > 0){
+    content = '<h4>' + self.place_name + '</h4>' +
+                  '<p>Average Rating: ' + self.avg_rating.toString() + '/5</p>' +
+                  '<small>' + self.the_count + ' people reviewed this location</small>';
+  }else {
+    content = '<h4>' + self.place_name + '</h4>' +
+              '<small>No reviews yet!</small>';
+  }
+
   map.addMarker({
     place_id: self.place_id,
     lat: self.lat,
     lng: self.lng,
     title: self.place_name,
     infoWindow: {
-      content:  '<h4>' + self.place_name + '</h4>' +
-                '<p>Average Rating: ' + self.avgRating + '/5</p>' +
-                '<small>' + self.numReviews + ' people reviewed this location</small>' //+
-                // '<p><a value="'+ self.place_id + '" class="add-review" href="#">Add a review</a></p>'
+      content: content
     }
   })
 }
 
 // adds a 'place' object to the list on the right side of the page.
 function addToList(place){
-  // placeMarker(place);
+  var displayRating;
+  // if there are no entries in the database for a location its avg_rating property will be -1
+  if (place.avg_rating >= 0 && place.the_count > 0){
+    var displayRating = '<li>' + place.place_name + ' ' + place.avg_rating +'/5</li>' +
+                        '<small>' + place.the_count + ' people reviewed this location</small>' +
+                        '<li><small><a value="' + place.place_id + '" class="add-review" href="#">Write a review for this location</a></small></li>';
+  } else {
+    var displayRating = '<li>' + place.place_name + '</li>' +
+                        '<li><small><a value="' + place.place_id + '" class="add-review" href="#">Be the first to review this location!</a></small></li>';
+  }
 
-  $('#list-results').append('<div class="results-item">' +
-                            '<li>' + place.place_name + ' ' + place.avgRating +'/5</li>' +
-                            '<li><small><a value="' + place.place_id + '" class="add-review" href="#">Write a review for this location</a></small></li>' +
-                            '</div>');
+  $('#list-results').append('<div class="results-item">' + displayRating + '</div>');
   // the 'add-review' class is added to all review links
   $('.add-review').click(function(e){
     // Grab the place id from the value of the link
@@ -134,7 +146,7 @@ function addToList(place){
     // add the review form to the page with the correct place id
     $('#rate-location').html('<div class="review-wrapper">' +
                               '  <section id="write-review">' +
-                              '    <h3>Select how many stars out of 5!</h3>' +
+                              '    <h3>Rating from 1-5:</h3>' +
                               '    <form class="" action="/reviews/postreview" method="post">' +
                               '      <select name="stars" class="form-control">' +
                               '        <option>1</option>' +
