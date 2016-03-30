@@ -82,6 +82,7 @@ function sendLocation(lat,lng){
       "lng": lng
     },
     success: function(data){
+      console.log(data);
       $('#list-results').html('');
       var array_of_places = JSON.parse(data);
       array_of_places.forEach(function(place){
