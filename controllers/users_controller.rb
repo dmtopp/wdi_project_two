@@ -24,10 +24,10 @@ class UsersController < ApplicationController
     if user && stored_password == params[:password]
       session[:logged_in] = true
       session[:current_user_id] = user[:user_id]
-      pry()
       "Welcome back #{user.username}"
+      sleep(5)
+      redirect '../'
     else
-      pry()
       "You have entered the wrong email & password combination"
     end
   end
