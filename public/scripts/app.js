@@ -54,7 +54,7 @@ $('#address_search').click(function(e){
         map.setCenter(lat, lng);
         map.addMarker({
           infoWindow: {
-            content: '<h4>Your position!</h4>'
+            content: '<h4><b>Your position!</b></h4>'
           },
           label: 'You! (ish)',
           lat: lat,
@@ -128,10 +128,10 @@ function addToList(place){
   if (place.avg_rating >= 0 && place.the_count > 0){
     var displayRating = '<p><b>' + place.place_name + ' ' + place.avg_rating +'/5</b></p>' +
                         '<p><small>' + place.the_count + ' people reviewed this location</small></p>' +
-                        '<p><small><a value="' + place.place_id + '" class="add-review" href="#">Write a review for this location</a></small></p>';
+                        '<p><small><a value="' + place.place_id + '" class="add-review" href="#popup1">Write a review for this location</a></small></p>';
   } else {
     var displayRating = '<p><b>' + place.place_name + '</b></p>' +
-                        '<p><small><a value="' + place.place_id + '" class="add-review" href="#">Be the first to review this location!</a></small></p>';
+                        '<p><small><a value="' + place.place_id + '" class="add-review" href="#popup1">Be the first to review this location</a></small></p>';
   }
 
   $('#list-results').append('<div class="results-item">' + displayRating + '</div>');
@@ -140,10 +140,7 @@ function addToList(place){
     // Grab the place id from the value of the link
     // The place id was stored in the value attribute of the link when the link was created
     var place_id = $(this).attr('value');
-    e.preventDefault();
     // add the review form to the page with the correct place id
-    $('#write-review').removeClass('hidden');
     $('#place-id').val(place_id);
-    $('#write-review').css('display', 'inline-block');
   });
 }

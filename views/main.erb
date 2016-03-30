@@ -6,37 +6,39 @@
       <button id="address_search" type="button" class="button u-full-width">Search</button>
       <button class="button u-full-width" type="button" id="geolocate">Use my location</button>
     </form>
-
-
-
     <aside id="list-results"></aside>
-
-    <section class="" id="write-review">
-      <h3>Rating from 1-5:</h3>
-
-      <!-- stars courtesy of James Barnett at // star css courtesy of James Barnett at http://codepen.io/jamesbarnett/pen/vlpkh -->
-      <form class="" action="/reviews/postreview" method="post">
-        <fieldset class="rating">
-          <input type="radio" id="star5" name="stars" value="5" />
-          <label class = "full" for="star5"></label>
-
-          <input type="radio" id="star4" name="stars" value="4" />
-          <label class = "full" for="star4"></label>
-
-          <input type="radio" id="star3" name="stars" value="3" checked/>
-          <label class = "full" for="star3"></label>
-
-          <input type="radio" id="star2" name="stars" value="2" />
-          <label class = "full" for="star2"></label>
-
-          <input type="radio" id="star1" name="stars" value="1" />
-          <label class = "full" for="star1"></label>
-
-          <input type="hidden" id="place-id" name="place_id" value="">
-        </fieldset>
-        <button type="submit">go</button>
-      </form>
-    </section>
   </div>
+</div>
+
+
+<div id="popup1" class="overlay">
+  <section class="popup" id="write-review">
+    <h3>Rating from 1-5:</h3>
+    <a class="close" href="#">&times;</a>
+
+    <!-- stars courtesy of James Barnett at // star css courtesy of James Barnett at http://codepen.io/jamesbarnett/pen/vlpkh -->
+    <form class="" action="/reviews/postreview" method="post">
+      <fieldset class="rating">
+        <input type="radio" id="star5" name="stars" value="5" />
+        <label class = "full" for="star5"></label>
+
+        <input type="radio" id="star4" name="stars" value="4" />
+        <label class = "full" for="star4"></label>
+
+        <input type="radio" id="star3" name="stars" value="3" checked/>
+        <label class = "full" for="star3"></label>
+
+        <input type="radio" id="star2" name="stars" value="2" />
+        <label class = "full" for="star2"></label>
+
+        <input type="radio" id="star1" name="stars" value="1" />
+        <label class = "full" for="star1"></label>
+
+        <input type="hidden" id="place-id" name="place_id" value="">
+      </fieldset>
+      <button type="submit">go</button>
+      <br>
+    </form>
+  </section>
 
 </div>
