@@ -1,39 +1,44 @@
-<div class="row options">
-  <div class="col-xs-12 col-md-8">
-    <div class="img-responsive" id="map"></div>
-  </div>
-  <div class="col-xs-12 col-md-4">
-    <button class="btn btn-danger form-control" type="button" id="geolocate" name="geolocate">Use my location</button>
-    <form id="location" action="/reviews" method="post" class="navbar-form navbar-left" role="search">
+<div class="row">
+  <div class="seven columns" id="map"></div>
+  <div class="five columns">
+    <form action="/reviews" method="post" class="navbar-form navbar-left" role="search">
       <div class="form-group">
-        <input id="address" type="text" class="form-control" placeholder="Search">
+        <input id="address" type="text" class="u-full-width" placeholder="Search">
       </div>
       <button id="address_search" type="button" class="btn btn-default">Search by Address</button>
+      <button class="button" type="button" id="geolocate">Use my location</button>
     </form>
-    <ul id="list-results">
 
-    </ul>
-    <!-- <div id="rate-location">
-      <div class="review-wrapper"> -->
-        <section class="hidden" id="write-review">
-          <h3>Rating from 1-5:</h3>
-            <form class="" action="/reviews/postreview" method="post">
-              <select name="stars" class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </select>
-              <input id="place-id" type="hidden" name="place_id" value="">
-              <button type="submit">GO!</button>
-            </form>
-          </section>
 
-        <!-- </div>
-    </div> -->
+
+    <ul id="list-results"></ul>
+
+    <section class="" id="write-review">
+      <h3>Rating from 1-5:</h3>
+
+      <!-- stars courtesy of James Barnett at // star css courtesy of James Barnett at http://codepen.io/jamesbarnett/pen/vlpkh -->
+      <form class="" action="/reviews/postreview" method="post">
+        <fieldset class="rating">
+          <input type="radio" id="star5" name="stars" value="5" />
+          <label class = "full" for="star5"></label>
+
+          <input type="radio" id="star4" name="stars" value="4" />
+          <label class = "full" for="star4"></label>
+
+          <input type="radio" id="star3" name="stars" value="3" checked/>
+          <label class = "full" for="star3"></label>
+
+          <input type="radio" id="star2" name="stars" value="2" />
+          <label class = "full" for="star2"></label>
+
+          <input type="radio" id="star1" name="stars" value="1" />
+          <label class = "full" for="star1"></label>
+
+          <input type="hidden" id="place-id" name="place_id" value="">
+        </fieldset>
+        <button type="submit">go</button>
+      </form>
+    </section>
   </div>
-
-
 
 </div>

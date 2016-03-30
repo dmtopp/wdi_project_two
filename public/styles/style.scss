@@ -1,6 +1,26 @@
 $map-width: 500px;
 $map-height: 500px;
 
+html, body{
+  font-family: 'Vollkorn', serif;
+}
+
+nav{
+  h3 {
+    display: inline-block;
+  }
+
+  ul{
+    display: inline-block;
+  }
+
+  li{
+    display: inline-block;
+  }
+
+
+}
+
 #map{
   margin: auto;
   height: $map-height;
@@ -10,109 +30,60 @@ $map-height: 500px;
   margin: 8px 0;
 }
 
-.results-item li{
+li{
   list-style-type: none;
 }
 
+
 .results-item {
-  border: 2px solid rgba(0,0,0,0.4);
+  border: 1px solid rgba(0,0,0,0.3);
   margin-top: 3px;
+  border-radius: 4px;
 }
 
-#location{
-  width: 100%;
-  padding: 0;
+#write-review {
+  display: none;
 }
 
-.form-group{
-  width: 100%;
+// star css courtesy of James Barnett at http://codepen.io/jamesbarnett/pen/vlpkh
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+
+.rating {
+  border: none;
+  float: left;
 }
 
-#address{
-  width: 100%;
-  display: block;
+.rating > input { display: none; }
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\2605";
 }
 
-#address-search{
-  width: 100%;
-  display: block;
+.rating > .half:before {
+  content: "\2605";
+  position: absolute;
 }
 
-.navbar-form{
-  margin: 0;
+.rating > label {
+  color: #ddd;
+ float: right;
 }
-// #write-review{
-//   display: none;
-// }
-// .review-wrapper{
-//   position: absolute;
-//   left: 50%;
-//   top: 50%;
-// }
 
-// #write-review{
-//   // display: none;
-//   position: relative;
-//   left: -50%;
-//   top: -50%;
-// }
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
 
-// @media only screen
-//   and (min-device-width: 250px)
-//   and (max-device-width: 736px) {
-//
-//
-//
-//   #geolocate{
-//     margin-top: 0;
-//     margin-bottom: 0;
-//   }
-//
-//   .navbar{
-//   height: 15%;
-//   padding: 0;
-//   margin: 0;
-//   };
-//
-//   #map{
-//     height: 70%;
-//     padding: 0;
-//     margin-top: 0;
-//     margin-bottom: 0;
-//   }
-//
-//   .options{
-//     height: 15%;
-//     padding: 0;
-//     margin-top: 0;
-//     margin-bottom: 0;
-//   }
-//
-//   .btn{
-//     margin-top: 0;
-//     margin-bottom: 0;
-//     border-radius: 0;
-//   }
-//
-//   .navbar-form{
-//     margin-top: 0;
-//     margin-bottom: 0;
-//     padding-top: 0;
-//     padding-bottom: 0;
-//     border-top: none;
-//   }
-//
-//   .form-group{
-//     margin-bottom: 0;
-//   }
-//
-//   .form-control{
-//     border-radius: 0;
-//   }
-//
-//   .navbar-form .form-group{
-//     margin-bottom: 0;
-//   }
-//
-//
-// }
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+
+
+// end stars

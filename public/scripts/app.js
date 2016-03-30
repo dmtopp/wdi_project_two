@@ -85,9 +85,6 @@ function sendLocation(lat,lng){
       $('#list-results').html('');
       var array_of_places = JSON.parse(data);
       array_of_places.forEach(function(place){
-        // this.avgRating = 5;
-        // this.numReviews = 10;
-        // if (array_of_places.indexOf(place) < 5)
         addToList(place);
         placeMarker(place);
       })
@@ -146,21 +143,6 @@ function addToList(place){
     // add the review form to the page with the correct place id
     $('#write-review').removeClass('hidden');
     $('#place-id').val(place_id);
-    // $('#rate-location').html('<div class="review-wrapper">' +
-    //                           '  <section id="write-review">' +
-    //                           '    <h3>Rating from 1-5:</h3>' +
-    //                           '    <form class="" action="/reviews/postreview" method="post">' +
-    //                           '      <select name="stars" class="form-control">' +
-    //                           '        <option>1</option>' +
-    //                           '        <option>2</option>' +
-    //                           '        <option>3</option>' +
-    //                           '        <option>4</option>' +
-    //                           '        <option>5</option>' +
-    //                           '      </select>' +
-    //                           '      <input type="hidden" name="place_id" value="' + place_id + '">' + //hidden field keeps track of place id
-    //                           '      <button type="submit">GO!</button>' +
-    //                           '    </form>' +
-    //                           '  </section>' +
-    //                           '</div>');
+    $('#write-review').css('display', 'inline-block');
   });
 }
