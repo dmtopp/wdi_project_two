@@ -23,10 +23,10 @@
         </nav>
       </div> <!-- end row -->
         <%= yield %>
-      <% if @message %>
+      <% if $message %>
         <div class="row message">
-          <p><%= @message %></p>
-          <% @message = '' %>
+          <p><%= $message %></p>
+          <% $message = '' %>
         </div>
       <% end %>
     </div>
