@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
       # SQL statement getting Average Rating based on the Place_ID from Google Places
       @sum_rating = Review.where(:location_id=>(Location.where(:places_id=>item.place_id).get(:location_id))).get{sum(rating)}
       # SQL statement getting the count by inner joining reviews table with locations table.
-      @the_count =  DB["select count(*) as 'count_rating' from reviews r inner join locations l ON r.location_id = l.location_id where l.places_id = '#{item.place_id}'"].all || 0
+      @the_count =  DB["select count(*) as count_rating from reviews r inner join locations l ON r.location_id = l.location_id where l.places_id = '#{item.place_id}'"].all || 0
       # Calculating average rating of location on the fly.  **FUTURE STATE** Would like to use some caching options but time was limted by project deadline (Redis or Firebase)
       if @the_count[0][:count_rating] > 0
         @average_rating = (@sum_rating.to_f / @the_count[0][:count_rating])
