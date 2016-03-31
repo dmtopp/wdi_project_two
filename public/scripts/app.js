@@ -10,9 +10,12 @@ var map = new GMaps({
 // grabs the user's location and sends the coordinates to the
 // sendLocation function
 $('#geolocate').click(function(){
+  $('#loading').css('visibility', 'visible')
+  $('#loading').css('opacity', '1');
   map.removeMarkers();
   GMaps.geolocate({
     success: function(position) {
+
       var lat = position.coords.latitude;
       var lng = position.coords.longitude;
 
@@ -23,10 +26,12 @@ $('#geolocate').click(function(){
         lng: lng,
         label: 'You! (ish)',
         infoWindow: {
-          content: '<p>Your position!</p>'
+          content: '<div class="content"><p>Your position!</p></div>'
         }
       })
       sendLocation(lat,lng);
+      $('#loading').css('visibility', 'hidden');
+      $('#loading').css('opacity', '0');
     },
     error: function(error) {
       console.log('Geolocation failed: '+error.message);
@@ -102,12 +107,12 @@ function placeMarker(place){
   var content;
   // if there are no entries in the database for a location its avg_rating property will be -1
   if (self.avg_rating >= 0 && self.the_count > 0){
-    content = '<p><b>' + self.place_name + '</b><p>' +
+    content = '<div class="content"><p><b>' + self.place_name + '</b><p>' +
                   '<p>Average Rating: ' + self.avg_rating.toString() + '/5</p>' +
-                  '<small>' + self.the_count + ' people reviewed this location</small>';
+                  '<small>' + self.the_count + ' people reviewed this location</small></div>';
   }else {
-    content = '<p><b>' + self.place_name + '</b></p>' +
-              '<small>No reviews yet!</small>';
+    content = '<div class="content"><p><b>' + self.place_name + '</b></p>' +
+              '<small>No reviews yet!</small></div>';
   }
 
   map.addMarker({

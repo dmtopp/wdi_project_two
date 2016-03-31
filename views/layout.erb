@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="/styles/normalize.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/styles/skeleton.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="/styles/style.css" media="screen" title="no title" charset="utf-8">
-    <title>Costanza</title>
+    <title>Kastanza</title>
   </head>
   <body>
     <div class="container">
       <div class="row">
         <nav>
-          <a href="/"><h3>Kastanza</h3></a>
-          <a href="/users"><button class="button">Login</button></a>
-          <a href="/users"><button class="button">Sign Up</button></a>
+          <a href="/"><img src="/Kastanza.png" alt="" /><h3>Kastanza</h3></a>
+          <% if session[:logged_in] == true%>
+            <a href="/users/logout"><button class="button">Logout</button></a>
+          <% else %>
+            <a href="/users"><button class="button">Login</button></a>
+            <a href="/users"><button class="button">Sign Up</button></a>
+          <% end %>
         </nav>
       </div> <!-- end row -->
 
