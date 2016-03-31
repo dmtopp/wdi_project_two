@@ -2,7 +2,12 @@ require 'bundler'
 Bundler.require
 
 # Calling SQL database through SEQUEL
-DB = Sequel.sqlite('development.sqlite')
+DB = if ENV['RACK_ENV'] == 'production'
+  Sequel.connect(ENV['DATABASE_URL'])
+else
+  Sequel.sqlite('development.sqlite')
+end
+
 
 # Adding Models
 require './models/user'
