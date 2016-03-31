@@ -22,8 +22,8 @@
           <% end %>
         </nav>
       </div> <!-- end row -->
-        <%= yield %>
-      <% if $message %>
+      <%= yield %>
+      <% if $message != "" %>
         <div class="row message">
           <p><%= $message %></p>
           <% $message = '' %>

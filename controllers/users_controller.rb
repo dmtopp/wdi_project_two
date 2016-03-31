@@ -19,15 +19,12 @@ class UsersController < ApplicationController
     user = User[username: params[:username]]
     if !user
       $message = "Username does not exist"
-      p "WAT"
       redirect '/users'
     elsif user && BCrypt::Password.new(user.password) == params[:password]
       session[:logged_in] = true
       session[:current_user_id] = user[:user_id]
-      p "WAT1"
     else
       $message = "You have entered an incorrect username or password.  Please try again."
-      p "WAT2"
       redirect '/users'
     end
   end

@@ -93,7 +93,7 @@ function sendLocation(lat,lng){
     },
     success: function(data){
       // console.log(data);
-      $('#list-results').html('');
+      $('#list-results h4').remove();
       var array_of_places = JSON.parse(data);
       array_of_places.forEach(function(place){
         addToList(place);
@@ -133,7 +133,6 @@ function placeMarker(place){
 
 // adds a 'place' object to the list on the right side of the page.
 function addToList(place){
-  $('#list-results').html('');
   var displayRating;
   // if there are no entries in the database for a location its avg_rating property will be -1
   if (place.avg_rating >= 0 && place.the_count > 0){
