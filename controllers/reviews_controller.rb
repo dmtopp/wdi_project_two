@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
   post '/' do
     @client = GooglePlaces::Client.new(ENV["API_KEY"])
     # Takes lat and long variables from frontend and grabs information from Google Places API Gem returns an array of hashes.
-    location_info = @client.spots(params[:lat], params[:lng], :type=>'establishment', :exclude=>'neighborhood',:rankby=>'distance')
+    location_info = @client.spots(params[:lat], params[:lng], :type=>'establishment', :exclude=>['neighborhood', 'locality', 'street_address'], :radius=>'100')
     # Creating an array of hashes for json to send back to frontend Javascript.
     @all_locations = []
     location_info.each do |item|
@@ -28,19 +28,20 @@ class ReviewsController < ApplicationController
       }
       @all_locations.push(location)
     end
-    @all_locations.to_json
+    @sorted = @all_locations.sort_by { |x| x[:the_count] }.reverse
+    @sorted.to_json
   end
 
 
   post '/postreview' do
     if session[:logged_in] === true
       post_review(params[:stars], params[:place_id])
-      @message = "Thank you for posting your review!"
+      $message = "Thank you for posting your review!"
       erb :main
     else # If user is not logged in store the AJAX call from Frontend in Session to be called later.  Redirect back to erb
       session[:stars] = params[:stars]
       session[:place_id] = params[:place_id]
-      @message = "Please login or register before posting your review."
+      $message = "Please login or register before posting your review."
       erb :login
     end
 
