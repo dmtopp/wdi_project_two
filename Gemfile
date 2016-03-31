@@ -22,7 +22,8 @@ end
 # Production
 group :production do
   gem 'pg', '~> 0.18.4'
-  gem 'puma', '~> 3.2'
+  # gem 'puma', '~> 3.2'
+  gem 'thin', '~> 1.6', '>= 1.6.4'
 end
 
 
