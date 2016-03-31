@@ -2,21 +2,33 @@ class UsersController < ApplicationController
 
   # Register User Method to be called in our '/register' route.
   def register_user
-    password = BCrypt::Password.create(params[:password])
-    @new_user = User.create username: params[:username], email: params[:email], password: password
-    session[:logged_in] = true
-    session[:current_user_id] = @new_user[:user_id]
+    user = User[username: params[:username]]
+    if !user
+      password = BCrypt::Password.create(params[:password])
+      @new_user = User.create username: params[:username], email: params[:email], password: password
+      session[:logged_in] = true
+      session[:current_user_id] = @new_user[:user_id]
+    else
+      $message = "This user already exists.  Please login or register with a different username"
+      redirect "/users"
+    end
   end
 
   # Login user method to be called in our '/login' route
   def login_user
     user = User[username: params[:username]]
-    stored_password = BCrypt::Password.new(user.password)
-    if user && stored_password == params[:password]
+    if !user
+      $message = "Username does not exist"
+      p "WAT"
+      redirect '/users'
+    elsif user && BCrypt::Password.new(user.password) == params[:password]
       session[:logged_in] = true
       session[:current_user_id] = user[:user_id]
+      p "WAT1"
     else
-      "You have entered the wrong username/password"
+      $message = "You have entered an incorrect username or password.  Please try again."
+      p "WAT2"
+      redirect '/users'
     end
   end
 
@@ -29,21 +41,20 @@ class UsersController < ApplicationController
   # Registration Post Route
   # Form Names from Params: username, email, password
   post '/register' do
+    register_user
     # Checks to see if user is coming from '/postreview' route and has stored session info.
-    if !session[:logged_in] && session[:stars] && session[:place_id]
-      register_user
+    if session[:stars] && session[:place_id]
       post_review(session[:stars], session[:place_id])
       session.delete(:stars)
       session.delete(:place_id)
-      @message = "Thanks for creating your account!  Your review has been posted."
+      $message = "Thanks for creating your account!  Your review has been posted."
       erb :main
     # Normal Registration
-    elsif !session[:logged_in] && !session[:stars] && !session[:place_id]
-      register_user
-      @message = "Thanks for creating your account!"
+    elsif !session[:stars] && !session[:place_id]
+      $message = "Thanks for creating your account!"
       erb :main
     else
-      @message = "You are already logged in."
+      $message = "You are already logged in."
       erb :main
     end
   end
@@ -52,20 +63,19 @@ class UsersController < ApplicationController
   # Form Name from Params: username, password
   post '/login' do
     # Checks to see if user is coming from '/postreview' and has stored session info.
-    if !session[:logged_in] && session[:stars] && session[:place_id]
-      login_user
+    login_user
+    if session[:stars] && session[:place_id]
       post_review(session[:stars], session[:place_id])
       session.delete(:stars)
       session.delete(:place_id)
-      @message = "You are now logged in and your review has been posted."
+      $message = "You are now logged in and your review has been posted."
       erb :main
     # Normal login
-    elsif !session[:logged_in] && !session[:stars] && !session[:place_id]
-      login_user
-      @message = "You are now logged in."
+    elsif !session[:stars] && !session[:place_id]
+      $message = "You are now logged in."
       erb :main
     else
-      @message = "You are already logged in."
+      $message = "You are already logged in."
       erb :main
     end
   end
@@ -77,7 +87,7 @@ class UsersController < ApplicationController
     session.delete(:current_users_id)
     session.delete(:stars)
     session.delete(:place_id)
-    @message = "You have been logged out"
+    $message = "You have been logged out"
     erb :main
   end
 end

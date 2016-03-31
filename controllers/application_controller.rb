@@ -7,7 +7,7 @@ class ApplicationController < Sinatra::Base
   set :public_dir, File.expand_path('../../public', __FILE__)
 
   enable :sessions
-  @message = ''
+  $message = ''
 
   # Method that is called in multiple places based on if users is logged in.
   # Allows user to post review from login/registration page if not logged in and trying to post review.
