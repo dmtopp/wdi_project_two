@@ -12,16 +12,16 @@ Sequel.migration do
     #   String :how_to_find, :null=>false
     #   String :place_id, :null=>false
     # end
+    create_table(:locations) do
+      primary_key :location_id
+      String :places_id, :null=>false
+      Integer :avg_rating
+    end
     create_table(:reviews) do
       primary_key :review_id
       foreign_key :location_id, :locations, :null=>false
       Integer :rating, :null=>false
       String :who_posted, :null=>false
-    end
-    create_table(:locations) do
-      primary_key :location_id
-      String :places_id, :null=>false
-      Integer :avg_rating
     end
   end
 end
