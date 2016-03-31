@@ -6,13 +6,21 @@ var map = new GMaps({
   lng: -87.626850
 });
 
+$('#address').keypress(function(event){
 
+  if (event.keyCode == 10 || event.keyCode == 13)
+      event.preventDefault();
+
+});
 // grabs the user's location and sends the coordinates to the
 // sendLocation function
 $('#geolocate').click(function(){
+  $('#loading').css('visibility', 'visible')
+  $('#loading').css('opacity', '1');
   map.removeMarkers();
   GMaps.geolocate({
     success: function(position) {
+
       var lat = position.coords.latitude;
       var lng = position.coords.longitude;
 
@@ -23,10 +31,12 @@ $('#geolocate').click(function(){
         lng: lng,
         label: 'You! (ish)',
         infoWindow: {
-          content: '<p>Your position!</p>'
+          content: '<div class="content"><p>Your position!</p></div>'
         }
       })
       sendLocation(lat,lng);
+      $('#loading').css('visibility', 'hidden');
+      $('#loading').css('opacity', '0');
     },
     error: function(error) {
       console.log('Geolocation failed: '+error.message);
@@ -54,7 +64,7 @@ $('#address_search').click(function(e){
         map.setCenter(lat, lng);
         map.addMarker({
           infoWindow: {
-            content: '<h4>Your position!</h4>'
+            content: '<h4><b>Your position!</b></h4>'
           },
           label: 'You! (ish)',
           lat: lat,
@@ -102,12 +112,12 @@ function placeMarker(place){
   var content;
   // if there are no entries in the database for a location its avg_rating property will be -1
   if (self.avg_rating >= 0 && self.the_count > 0){
-    content = '<p><b>' + self.place_name + '</b><p>' +
+    content = '<div class="content"><p><b>' + self.place_name + '</b><p>' +
                   '<p>Average Rating: ' + self.avg_rating.toString() + '/5</p>' +
-                  '<small>' + self.the_count + ' people reviewed this location</small>';
+                  '<small>' + self.the_count + ' people reviewed this location</small></div>';
   }else {
-    content = '<p><b>' + self.place_name + '</b></p>' +
-              '<small>No reviews yet!</small>';
+    content = '<div class="content"><p><b>' + self.place_name + '</b></p>' +
+              '<small>No reviews yet!</small></div>';
   }
 
   map.addMarker({
@@ -123,15 +133,16 @@ function placeMarker(place){
 
 // adds a 'place' object to the list on the right side of the page.
 function addToList(place){
+  $('#list-results').html('');
   var displayRating;
   // if there are no entries in the database for a location its avg_rating property will be -1
   if (place.avg_rating >= 0 && place.the_count > 0){
     var displayRating = '<p><b>' + place.place_name + ' ' + place.avg_rating +'/5</b></p>' +
                         '<p><small>' + place.the_count + ' people reviewed this location</small></p>' +
-                        '<p><small><a value="' + place.place_id + '" class="add-review" href="#">Write a review for this location</a></small></p>';
+                        '<p><small><a value="' + place.place_id + '" class="add-review" href="#popup1">Write a review for this location</a></small></p>';
   } else {
     var displayRating = '<p><b>' + place.place_name + '</b></p>' +
-                        '<p><small><a value="' + place.place_id + '" class="add-review" href="#">Be the first to review this location!</a></small></p>';
+                        '<p><small><a value="' + place.place_id + '" class="add-review" href="#popup1">Be the first to review this location</a></small></p>';
   }
 
   $('#list-results').append('<div class="results-item">' + displayRating + '</div>');
@@ -140,10 +151,14 @@ function addToList(place){
     // Grab the place id from the value of the link
     // The place id was stored in the value attribute of the link when the link was created
     var place_id = $(this).attr('value');
-    e.preventDefault();
     // add the review form to the page with the correct place id
-    $('#write-review').removeClass('hidden');
     $('#place-id').val(place_id);
-    $('#write-review').css('display', 'inline-block');
   });
 }
+
+
+$(function() {
+    setTimeout(function() {
+        $(".message").fadeOut("fast",function(){});
+    }, 3500);
+});

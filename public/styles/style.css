@@ -5,13 +5,25 @@ html, body {
 p {
   margin: 0; }
 
+.message {
+  background-color: #ccffcc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin-top: 10px;
+  padding: 10px; }
+
 nav {
   padding-top: 20px; }
+  nav img {
+    height: 50px;
+    margin-right: 15px;
+    margin-left: 5px; }
   nav a {
     color: black;
     text-decoration: none; }
-  nav h3 {
-    display: inline-block; }
+  nav h1 {
+    display: inline-block;
+    margin-bottom: 1%; }
   nav ul {
     display: inline-block; }
   nav li {
@@ -39,6 +51,11 @@ li {
   border: 1px solid rgba(0, 0, 0, 0.2);
   overflow-y: scroll; }
 
+#list-results h4 {
+  padding: 2%;
+  position: absolute;
+  color: rgba(0, 0, 0, 0.2); }
+
 #list-results div:nth-child(2n) {
   background-color: rgba(237, 237, 237, 0.3); }
 
@@ -48,8 +65,8 @@ li {
   .results-item p {
     margin: 0; }
 
-#write-review {
-  display: none; }
+.content {
+  font-family: 'Vollkorn', serif; }
 
 fieldset, label {
   margin: 0;
@@ -88,5 +105,55 @@ fieldset, label {
 .rating > label:hover ~ input:checked ~ label,
 .rating > input:checked ~ label:hover ~ label {
   color: #FFED85; }
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0; }
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1; }
+
+.popup {
+  margin: 20% auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out; }
+  .popup .close {
+    position: absolute;
+    top: 15px;
+    right: 20px; }
+  .popup a {
+    text-decoration: none;
+    font-style: bold;
+    font-size: 1.5em; }
+  .popup fieldset {
+    display: inline-block;
+    margin: auto; }
+  .popup button {
+    display: inline-block;
+    margin: auto;
+    float: right; }
+  .popup h3 {
+    display: inline-block;
+    margin: auto;
+    margin-top: 7px; }
+
+@media screen and (max-width: 700px) {
+  .box {
+    width: 55%; }
+
+  .popup {
+    width: 55%; } }
 
 /*# sourceMappingURL=style.css.map */
