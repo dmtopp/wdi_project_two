@@ -17,6 +17,9 @@ Kastanza is a web application for users to find and rate public bathrooms.  It u
 
 Users have two options when visiting Kastanza:  Find their location using the geolocation feature of Gmaps, or search for a location by address.  If they search by address, the application makes an ajax call from the front end to Google Maps to convert the address into coordinates.  The coordinates are then sent to the server.
 
+![list of places](/readmeimgs/desktop3.png)
+![list of places mobile](/readmeimgs/mobile3.png)
+
 The server then takes those coordinates and uses the Google Places API to return a list of nearby places as well as any ratings associated with those places from the Kastanza database.  The user can then select a location to view its rating or review it.  The review is then stored in the database along with the place id.
 
 ### Installation Instructions
