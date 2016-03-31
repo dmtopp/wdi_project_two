@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name = "viewport" content = "width = device-width">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href='https://fonts.googleapis.com/css?family=Vollkorn' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/styles/normalize.css" media="screen" title="no title" charset="utf-8">
@@ -13,13 +14,18 @@
     <div class="container">
       <div class="row">
         <nav>
-          <a href="/"><img src="/Kastanza.png" alt="" /><h1>Kastanza</h1></a>
-          <% if session[:logged_in] == true%>
-            <a href="/users/logout"><button class="button">Logout</button></a>
-          <% else %>
-            <a href="/users"><button class="button">Login</button></a>
-            <a href="/users"><button class="button">Sign Up</button></a>
-          <% end %>
+          <div class="six columns">
+            <a href="/"><img src="/Kastanza.png" alt="" /><h1>Kastanza</h1></a>
+          </div>
+
+          <div class="six columns">
+            <% if session[:logged_in] == true%>
+              <a href="/users/logout"><button class="button">Logout</button></a>
+            <% else %>
+              <a href="/users"><button class="button">Login</button></a>
+              <a href="/users"><button class="button">Sign Up</button></a>
+            <% end %>
+          </div>
         </nav>
       </div> <!-- end row -->
       <%= yield %>
