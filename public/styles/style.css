@@ -5,6 +5,13 @@ html, body {
 p {
   margin: 0; }
 
+.message {
+  background-color: #ccffcc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  margin-top: 10px;
+  padding: 10px; }
+
 nav {
   padding-top: 20px; }
   nav img {
@@ -14,8 +21,9 @@ nav {
   nav a {
     color: black;
     text-decoration: none; }
-  nav h3 {
-    display: inline-block; }
+  nav h1 {
+    display: inline-block;
+    margin-bottom: 1%; }
   nav ul {
     display: inline-block; }
   nav li {
@@ -42,6 +50,11 @@ li {
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   overflow-y: scroll; }
+
+#list-results h4 {
+  padding: 2%;
+  position: absolute;
+  color: rgba(0, 0, 0, 0.2); }
 
 #list-results div:nth-child(2n) {
   background-color: rgba(237, 237, 237, 0.3); }

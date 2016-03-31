@@ -6,7 +6,12 @@ var map = new GMaps({
   lng: -87.626850
 });
 
+$('#address').keypress(function(event){
 
+  if (event.keyCode == 10 || event.keyCode == 13)
+      event.preventDefault();
+
+});
 // grabs the user's location and sends the coordinates to the
 // sendLocation function
 $('#geolocate').click(function(){
@@ -128,6 +133,7 @@ function placeMarker(place){
 
 // adds a 'place' object to the list on the right side of the page.
 function addToList(place){
+  $('#list-results').html('');
   var displayRating;
   // if there are no entries in the database for a location its avg_rating property will be -1
   if (place.avg_rating >= 0 && place.the_count > 0){
@@ -149,3 +155,10 @@ function addToList(place){
     $('#place-id').val(place_id);
   });
 }
+
+
+$(function() {
+    setTimeout(function() {
+        $(".message").fadeOut("fast",function(){});
+    }, 3500);
+});
