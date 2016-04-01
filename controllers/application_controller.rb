@@ -13,6 +13,9 @@ class ApplicationController < Sinatra::Base
   # Allows user to post review from login/registration page if not logged in and trying to post review.
   def post_review(star, place)
     @get_username = User.where(:user_id=>session[:current_user_id]).get(:username)
+    puts "====="
+    puts place
+    puts "====="
     @get_location_id = Location.where(:places_id=>place).get(:location_id)
     puts "=============="
     puts @get_location_id
