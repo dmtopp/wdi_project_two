@@ -21,6 +21,16 @@ p {
 
 }
 
+#about{
+  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+
+  a{
+    text-decoration: none;
+  }
+}
 
 nav{
   padding-top: 20px;
@@ -101,6 +111,11 @@ li{
   font-family: 'Vollkorn', serif;
 }
 
+
+h5{
+  margin: 0;
+  padding: 0;
+}
 // star css courtesy of James Barnett at http://codepen.io/jamesbarnett/pen/vlpkh
 
 fieldset, label { margin: 0; padding: 0; }
@@ -207,6 +222,8 @@ fieldset, label { margin: 0; padding: 0; }
   }
 }
 
+// Media query for mobile
+
 @media screen and (max-device-width: 440px){
   html,body{
     margin: 0;
@@ -258,10 +275,10 @@ fieldset, label { margin: 0; padding: 0; }
     }
 
     button{
-      margin: 0 !important;
       width: 100%;
     }
   }
+
   #address{
     border-radius: 0;
   }
@@ -269,19 +286,21 @@ fieldset, label { margin: 0; padding: 0; }
   .columns{
     margin: auto;
   }
+
   nav {
     padding: 0;
 
     button{
       width: 50%;
-      margin-bottom: 0 !important;
-      // border-left: 1px solid rgba(0,0,0,0.4);
     }
-    button:first-child{
-      float: left;
-    }
-    button:last-child{
-      float: right;
-    }
+  }
+
+  #about{
+    top: 0;
+    right: 0;
+  }
+
+  #about-popup .popup{
+    height: 300px;
   }
 }

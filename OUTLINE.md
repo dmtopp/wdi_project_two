@@ -6,11 +6,11 @@ Create a yelp-like app for public bathrooms that lets users rate and give review
 
 #### Minimum goals
 
-+ Users should be able to create accounts
-+ Users should be able to modify their account info and delete their account
-+ Users should be able to add a new bathroom
-+ Users should be able to write a review of a bathroom and give it a rating out of 5 stars
-+ **Users should be able to search for bathrooms near their location**
++ Users should be able to create accounts ("as a user, I want to be able to create an account so I can share my reviews and interact with other users")
++ Users should be able to modify their account info and delete their account ("as a user, I want to be able to edit my account info in case my information changes or I no longer want to have an account")
++ Users should be able to add a new bathroom ("as a user, I want to be able to share my experience with other users")
++ Users should be able to write a review of a bathroom and give it a rating out of 5 stars ("as a user, I want to be able to share my experience with other users")
++ **Users should be able to search for bathrooms near their location** ("as a user, I want to find a nice bathroom near me because I have to pee")
 
 #### Above and beyond
 

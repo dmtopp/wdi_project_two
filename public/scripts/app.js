@@ -149,6 +149,7 @@ function addToList(place){
   $('.add-review').click(function(e){
     // Grab the place id from the value of the link
     // The place id was stored in the value attribute of the link when the link was created
+    // probably not the best implementation--some reorganization could be useful.
     var place_id = $(this).attr('value');
     // add the review form to the page with the correct place id
     $('#place-id').val(place_id);

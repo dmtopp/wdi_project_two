@@ -4,6 +4,7 @@
 
 Kastanza is a web application for users to find and rate public bathrooms.  It uses the Google Maps API (via Gmaps) and Google places to fetch locations.
 
+
 ### Technologies Used
 
 + Ruby
@@ -14,6 +15,8 @@ Kastanza is a web application for users to find and rate public bathrooms.  It u
 + HTML/CSS
 
 ### The Approach
+
+[See our outline](https://github.com/dmtopp/wdi_project_two/blob/master/OUTLINE.md) for user stories and wireframes.
 
 Users have two options when visiting Kastanza:  Find their location using the geolocation feature of Gmaps, or search for a location by address.  If they search by address, the application makes an ajax call from the front end to Google Maps to convert the address into coordinates.  The coordinates are then sent to the server.
 
@@ -35,6 +38,17 @@ This app is live on the internet!  To use it, navigate to [the app](https://kast
 + User input for creating new users needs to be trimmed and changed to lowercase so Josh and josh act as the same username.
 
 + Locations can currently be reviewed multiple times by the same user.
+
+### Future goals
+
++ Give users the option to add a brief comment associated with their review
+
++ Better mobile display--the display is not horrible right now but could be improved
+
++ Email confirmation for users when they sign up
+
++ Support for different platforms and screen sizes--the design looks pretty good on our laptops (we think) but may not translate well to other platforms
+
 
 ### Acknowledgements
 

@@ -12,6 +12,14 @@ p {
   margin-top: 10px;
   padding: 10px; }
 
+#about {
+  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+  right: 10px; }
+  #about a {
+    text-decoration: none; }
+
 nav {
   padding-top: 20px; }
   nav img {
@@ -67,6 +75,10 @@ li {
 
 .content {
   font-family: 'Vollkorn', serif; }
+
+h5 {
+  margin: 0;
+  padding: 0; }
 
 fieldset, label {
   margin: 0;
@@ -199,7 +211,6 @@ fieldset, label {
       margin: 0;
       padding: 0; }
     form button {
-      margin: 0 !important;
       width: 100%; }
 
   #address {
@@ -211,11 +222,13 @@ fieldset, label {
   nav {
     padding: 0; }
     nav button {
-      width: 50%;
-      margin-bottom: 0 !important; }
-    nav button:first-child {
-      float: left; }
-    nav button:last-child {
-      float: right; } }
+      width: 50%; }
+
+  #about {
+    top: 0;
+    right: 0; }
+
+  #about-popup .popup {
+    height: 300px; } }
 
 /*# sourceMappingURL=style.css.map */
