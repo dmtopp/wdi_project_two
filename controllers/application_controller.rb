@@ -14,6 +14,7 @@ class ApplicationController < Sinatra::Base
   def post_review(star, place)
     @get_username = User.where(:user_id=>session[:current_user_id]).get(:username)
     @get_location_id = Location.where(:places_id=>place).get(:location_id)
+    puts @get_location_id
     @location_count_user = DB["select count(*) as review_count from reviews where lower(who_posted) = lower('#{@get_username}') and location_id = #{@get_location_id}"].all
     pry
     if !@get_location_id
