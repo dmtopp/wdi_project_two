@@ -18,9 +18,9 @@ class ApplicationController < Sinatra::Base
       Location.create places_id: place
       @get_location_id = Location.where(:places_id=>place).get(:location_id)
       Review.create  location_id: @get_location_id, rating: star, who_posted: @get_username
-    elsif @get_location_id
+    else @get_location_id
       @location_count_user = DB["select count(*) as review_count from reviews where lower(who_posted) = lower('#{@get_username}') and location_id = #{@get_location_id}"].all
-      if @location_count_user[0][:review_count]
+      if @location_count_user[0][:review_count] > 0
         $message = "You have already reviewed this location"
         redirect '../'
       else
