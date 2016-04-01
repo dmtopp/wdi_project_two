@@ -13,24 +13,19 @@ class ApplicationController < Sinatra::Base
   # Allows user to post review from login/registration page if not logged in and trying to post review.
   def post_review(star, place)
     @get_username = User.where(:user_id=>session[:current_user_id]).get(:username)
-    puts "====="
-    puts place
-    puts "====="
     @get_location_id = Location.where(:places_id=>place).get(:location_id)
-    puts "=============="
-    puts @get_location_id
-    puts "=============="
-    @location_count_user = DB["select count(*) as review_count from reviews where lower(who_posted) = lower('#{@get_username}') and location_id = #{@get_location_id}"].all
-    pry
     if !@get_location_id
       Location.create places_id: place
       @get_location_id = Location.where(:places_id=>place).get(:location_id)
-      Review.create  location_id: @get_location_id, rating: star, who_posted: @get_usernam
-    elsif @get_location_id && @location_count_user[0][:review_count]
-      $message = "You have already reviewed this location"
-      redirect '../'
-    else
       Review.create  location_id: @get_location_id, rating: star, who_posted: @get_username
+    elsif @get_location_id
+      @location_count_user = DB["select count(*) as review_count from reviews where lower(who_posted) = lower('#{@get_username}') and location_id = #{@get_location_id}"].all
+      if @location_count_user[0][:review_count]
+        $message = "You have already reviewed this location"
+        redirect '../'
+      else
+        Review.create  location_id: @get_location_id, rating: star, who_posted: @get_username
+      end
     end
   end
 
