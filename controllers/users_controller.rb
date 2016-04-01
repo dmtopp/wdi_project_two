@@ -2,8 +2,8 @@ class UsersController < ApplicationController
 
   # Register User Method to be called in our '/register' route.
   def register_user
-    user = User[username: params[:username]]
-    if !user
+    @user_count = DB["select count(*) as usercount from users where lower(username) like lower('#{params[:username]}')"].all
+    if @user_count[0][:usercount] == 0
       password = BCrypt::Password.create(params[:password])
       @new_user = User.create username: params[:username], email: params[:email], password: password
       session[:logged_in] = true
