@@ -37,7 +37,7 @@ This app is live on the internet!  To use it, navigate to [the app](https://kast
 
 + User input for creating new users needs to be trimmed and changed to lowercase so Josh and josh act as the same username.
 
-+ Locations can currently be reviewed multiple times by the same user.
++ Locations can currently be reviewed multiple times by the same user. (FIXED 04/01/2016)
 
 ### Future goals
 

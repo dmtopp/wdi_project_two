@@ -16,13 +16,13 @@ class UsersController < ApplicationController
 
   # Login user method to be called in our '/login' route
   def login_user
-    user = User[username: params[:username]]
-    if !user
+    user = DB["select * from users where lower(username) like lower('#{params[:username]}')"].all
+    if !user[0]
       $message = "Username does not exist"
       redirect '/users'
-    elsif user && BCrypt::Password.new(user.password) == params[:password]
+    elsif user && BCrypt::Password.new(user[0][:password]) == params[:password]
       session[:logged_in] = true
-      session[:current_user_id] = user[:user_id]
+      session[:current_user_id] = user[0][:user_id]
     else
       $message = "You have entered an incorrect username or password.  Please try again."
       redirect '/users'

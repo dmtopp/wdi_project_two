@@ -14,11 +14,17 @@ class ApplicationController < Sinatra::Base
   def post_review(star, place)
     @get_username = User.where(:user_id=>session[:current_user_id]).get(:username)
     @get_location_id = Location.where(:places_id=>place).get(:location_id)
+    @location_count_user = DB["select count(*) as review_count from reviews where lower(who_posted) = lower('#{@get_username}') and location_id = #{@get_location_id}"].all
     if !@get_location_id
       Location.create places_id: place
       @get_location_id = Location.where(:places_id=>place).get(:location_id)
+      Review.create  location_id: @get_location_id, rating: star, who_posted: @get_usernam
+    elsif @get_location_id && @location_count_user[0][:review_count]
+      $message = "You have already reviewed this location"
+      redirect '../'
+    else
+      Review.create  location_id: @get_location_id, rating: star, who_posted: @get_username
     end
-    Review.create  location_id: @get_location_id, rating: star, who_posted: @get_username
   end
 
 
