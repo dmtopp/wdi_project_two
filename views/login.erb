@@ -2,17 +2,17 @@
   <div class="six columns">
     <h1>Login:</h1>
     <form method="post" action="/users/login">
-        <input type="text" class="u-full-width" name="username" placeholder="Enter Username">
-        <input type="password" class="u-full-width" name="password" placeholder="Enter Password">
+        <input type="text" class="u-full-width" name="username" placeholder="Enter Username" onkeypress="return restrictSpace()">
+        <input type="password" class="u-full-width" name="password" placeholder="Enter Password" onkeypress="return restrictSpace()">
         <button type="submit" class="button">Submit</button>
     </form>
   </div>
   <div class="six columns">
     <h1>Please Register:</h1>
     <form method="post" action="/users/register">
-        <input type="text" class="u-full-width" name="username" placeholder="Enter Username">
-        <input type="text" class="u-full-width" name="email" placeholder="Enter Email">
-        <input type="password" class="u-full-width" name="password" placeholder="Enter Password">
+        <input type="text" class="u-full-width" name="username" placeholder="Enter Username" onkeypress="return restrictSpace()">
+        <input type="text" class="u-full-width" name="email" placeholder="Enter Email" onkeypress="return restrictSpace()">
+        <input type="password" class="u-full-width" name="password" placeholder="Enter Password" onkeypress="return restrictSpace()">
         <button type="submit" class="button">Submit</button>
     </form>
   </div>

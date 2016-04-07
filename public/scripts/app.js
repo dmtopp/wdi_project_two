@@ -162,3 +162,10 @@ $(function() {
         $(".message").fadeOut("fast",function(){});
     }, 3500);
 });
+
+
+function restrictSpace() {
+    if (event.keyCode == 32) {
+        return false;
+    }
+}
